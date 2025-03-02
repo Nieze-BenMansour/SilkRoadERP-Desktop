@@ -1,0 +1,68 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Ste.Fenetre.WindowDevis"
+        Title="WindowDevis" Height="772.75" Width="1363.7"   WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowState="Maximized" KeyDown="Total_setRemise_setTVA"  
+     Background="WhiteSmoke" Loaded="Window_Loaded">
+    <Grid>
+
+        <Label x:Name="labelBl" Content="Devis :" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Height="50" Width="137" FontSize="35" FontWeight="Bold"/>
+        <Label x:Name="NumDevis_Label" Content="" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="146,27,0,0" VerticalAlignment="Top" Width="143" Height="43"/>
+
+
+        <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="795,37,0,0" VerticalAlignment="Top" Height="0" Width="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Label Content="Code client :" Foreground="Blue"  FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="794,12,0,0" VerticalAlignment="Top" Height="37" Width="122"/>
+        <Label Content="Client :" Foreground="Blue" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="795,46,0,0" VerticalAlignment="Top" Height="37" Width="78"/>
+        <DatePicker x:Name="DateBL"  SelectedDate="{x:Static System:DateTime.Now}" HorizontalAlignment="Left" Height="34" Margin="609,49,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="181"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="10,90,0,0" Stroke="Black" VerticalAlignment="Top" Width="1336"/>
+        <Button x:Name="getClient" Content="Client" FontSize="20" FontWeight="Bold" Background="Gold" HorizontalAlignment="Left" Margin="609,10,0,0" VerticalAlignment="Top" Width="180" Height="34" Click="getClient_Click"/>
+        <Label x:Name="CodeLabel" Content="" HorizontalAlignment="Left" Margin="916,12,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="270"/>
+        <Label x:Name="ClientLabel" Content="" HorizontalAlignment="Left" Margin="916,46,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="430"/>
+        <ScrollViewer HorizontalAlignment="Stretch" Margin="0,134,5,5" VerticalAlignment="Stretch"  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <Grid x:Name="GridBL" Height="593" Width="1481">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="51"/>
+                    <RowDefinition Height="505*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="38*"/>
+                    <ColumnDefinition Width="49*"/>
+                    <ColumnDefinition Width="51*"/>
+                    <ColumnDefinition Width="162*"/>
+                    <ColumnDefinition Width="452*"/>
+                    <ColumnDefinition Width="94*"/>
+                    <ColumnDefinition Width="120*"/>
+                    <ColumnDefinition Width="66*"/>
+                    <ColumnDefinition Width="182*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="226*"/>
+
+                </Grid.ColumnDefinitions>
+                <Label Content="REF" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="47,0,0,0" VerticalAlignment="Top" Height="37" Width="43" Grid.Column="3"/>
+                <Label Content="Designation" FontSize="20" FontWeight="SemiBold" Grid.Column="4" HorizontalAlignment="Left" Margin="132,4,0,0" VerticalAlignment="Top" Height="37" Width="119"/>
+                <Label Content="Qte" FontSize="20" FontWeight="SemiBold" Grid.Column="5" HorizontalAlignment="Left" Margin="19,0,0,0" VerticalAlignment="Top" Height="37" Width="43"/>
+                <Label Content="Prix H.T" FontSize="20" FontWeight="SemiBold" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="80" Margin="10,0,0,0"/>
+                <Label Content="Rem%" FontSize="20" FontWeight="SemiBold" Grid.Column="7" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Width="66"/>
+                <Label Content="TOT H.T" FontSize="20" FontWeight="SemiBold" Grid.Column="8" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" Height="37" Width="82"/>
+                <Label Content="TVA" FontSize="20" FontWeight="SemiBold" Grid.Column="9" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="47"/>
+                <Label Content="TOT TTC" FontSize="20" FontWeight="SemiBold" Grid.Column="10" HorizontalAlignment="Left" Margin="52,-1,0,0" VerticalAlignment="Top" Height="37" Width="85"/>
+
+                <Label Content="N°" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="36"/>
+            </Grid>
+        </ScrollViewer>
+        <Button x:Name="Enregistrer_Devis" FontSize="17" FontWeight="Bold" Content="Enregistrer" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="102" Height="44" Click="Enregistrer_Devis_Click"/>
+        <Button Content="Fermer" x:Name="Close" FontSize="17" FontWeight="Bold"  HorizontalAlignment="Left" Margin="228,90,0,0" VerticalAlignment="Top" Width="75" Height="44" Click="Close_Click"/>
+        <Button x:Name="Print" Content="Imprimer" HorizontalAlignment="Left" Margin="117,90,0,0" VerticalAlignment="Top" Width="105" Click="Print_Click" FontSize="17" FontWeight="Bold" Height="44"/>
+        <Button Content="BL" x:Name="TransformToBl" FontSize="17" FontWeight="Bold"  HorizontalAlignment="Left" Margin="308,90,0,0" VerticalAlignment="Top" Width="75" Height="44" Click="TransformToBl_Click" />
+        <Button Content="Gestion client" x:Name="gestionClientBTN" FontSize="17" FontWeight="Bold"  HorizontalAlignment="Left" Margin="609,91,0,0" VerticalAlignment="Top" Width="181" Height="44" Click="gestionClientBTN_Click"/>
+
+    </Grid>
+</Window>

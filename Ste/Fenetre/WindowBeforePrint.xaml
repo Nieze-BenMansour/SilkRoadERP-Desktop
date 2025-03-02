@@ -1,0 +1,14 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tr="http://schemas.telerik.com/wpf" x:Class="Ste.WindowBeforePrint"
+        Title="WindowBeforePrint" Height="779.267" Width="1367.556"
+    WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+    >
+    <Grid>
+        <DocumentViewer x:Name="document_a_print" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Height="746" Width="1340"/>
+        <Button x:Name="fermer" Content="Fermer" HorizontalAlignment="Left" Margin="1275,5,0,0" VerticalAlignment="Top" Width="75" Click="fermer_Click"/>
+
+
+    </Grid>
+</Window>

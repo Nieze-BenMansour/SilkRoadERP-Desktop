@@ -1,0 +1,69 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre.ProduitFolder"
+        xmlns:Ste="clr-namespace:Ste" x:Class="Ste.Fenetre.ProduitFolder.Win_ChercherPrixAchatPar_Fournisseur"
+        mc:Ignorable="d"
+        Title="Win_ChercherPrixAchatPar_Fournisseur" Height="376.353" Width="1134.905" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Ste:SteDataBaseDataSet x:Key="steDataBaseDataSet"/>
+        <CollectionViewSource x:Key="ligneBonReceptionViewSource" Source="{Binding LigneBonReception, Source={StaticResource steDataBaseDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource ligneBonReceptionViewSource}">
+
+        <DataGrid x:Name="ligneBonReceptionDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,62,10,5" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" IsReadOnly="True" FontSize="15" FontWeight="SemiBold">
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn x:Name="Four_ProduitColumn" Width="130" Header="Fournisseur" Binding="{Binding BonDeReception.Fournisseur.nom}"/>
+                <DataGridTextColumn x:Name="date_ProduitColumn" Width="130" Header="Date" Binding="{Binding BonDeReception.dateDeLivraison, StringFormat=\{0:dd/MM/yy\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="ref_ProduitColumn" Width="120" Header="Ref" Binding="{Binding Ref_Produit}"/>
+                <DataGridTextColumn x:Name="Designation" Width="250" Header="Designation" Binding="{Binding designation_li}"/>
+                <DataGridTextColumn x:Name="prix_HTColumn" Width="110" Header="Prix HT" Binding="{Binding prix_HT, StringFormat={}{0:n0}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="prix_HTColumnFodec" Width="110" Header="HT + Fodec" Binding="{Binding prixHtFodec, StringFormat={}{0:n0}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                
+                <DataGridTextColumn x:Name="remiseColumn" Width="70" Header="Remise" Binding="{Binding remise}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="tvaColumn" Width="70" Header="tva" Binding="{Binding tva}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="netttcUnitaire" Width="110" Header="Net TTC" Binding="{Binding NetTtcUnitaire, StringFormat={}{0:n0}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

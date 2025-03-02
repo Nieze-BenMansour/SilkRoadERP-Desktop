@@ -1,0 +1,41 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre"
+        xmlns:Ste="clr-namespace:Ste" x:Class="Ste.Fenetre.Win_GetFactureForBl"
+        mc:Ignorable="d"
+        Title="Win_GetFactureForBl" Height="487.18" Width="582.895" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Ste:SteDataBaseDataSet x:Key="steDataBaseDataSet"/>
+        <CollectionViewSource x:Key="factureViewSource" Source="{Binding Facture, Source={StaticResource steDataBaseDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource factureViewSource}">
+
+        <DataGrid x:Name="factureDataGrid" FontSize="16" FontWeight="SemiBold" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,131,10,10" ItemsSource="{Binding}" IsReadOnly="True" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="GetSelectedFacture">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="numColumn" Width="150" IsReadOnly="True" Header="Num" Binding="{Binding Num}"/>
+                <DataGridTextColumn x:Name="dateColumn" Width="150" Header="Date" Binding="{Binding date, StringFormat=\{0:dd/MM/yy\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="tot_ttcColumn" Width="200" Header="TOT TTC" Binding="{Binding tot_ttc, StringFormat={}{0:n0}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="label" Content="Factures :" FontSize="15" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ClientLabel" FontWeight="SemiBold" FontSize="16" Content="" HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top" Width="443"/>
+        <Button x:Name="AjouterBtn" Content="Ajouter" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="75" Height="36" Click="AjouterBtn_Click"/>
+        <Button x:Name="ModifierBtn" Content="Modifier" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="96,90,0,0" VerticalAlignment="Top" Width="75" Height="36" Click="ModifierBtn_Click"/>
+
+    </Grid>
+</Window>

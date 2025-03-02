@@ -1,0 +1,128 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre.FactureAvoirFournisseurFolder"
+        xmlns:Ste="clr-namespace:Ste" x:Class="Ste.Fenetre.FactureAvoirFournisseurFolder.Win_FacturationAvoirFournisseur"
+        mc:Ignorable="d"
+        Title="Win_FacturationAvoirFournisseur"  Height="772.75" Width="1363.7"
+         WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowState="Maximized"  
+    Background="WhiteSmoke" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Ste:SteDataBaseDataSet x:Key="steDataBaseDataSet"/>
+        <CollectionViewSource x:Key="factureFournisseurViewSource" Source="{Binding FactureFournisseur, Source={StaticResource steDataBaseDataSet}}"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="82*"/>
+            <RowDefinition Height="88*"/>
+            <RowDefinition Height="499*"/>
+            <RowDefinition Height="96*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="399*"/>
+            <ColumnDefinition Width="56*"/>
+            <ColumnDefinition Width="429*"/>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="413*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="label" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="SemiBold" Content="Facturation avoirs fournisseurs" Height="45" Width="370"/>
+        <Button x:Name="FermerBtn" Width="74" VerticalAlignment="Top" Margin="307,10,0,0" HorizontalAlignment="Left" FontWeight="SemiBold" Content="Fermer" Click="FermerBtn_Click" Grid.Column="4" Height="20"/>
+        <Button x:Name="Ajouter_Facture_buttonAvFr" Width="76" VerticalAlignment="Top" Margin="169,54,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Content="Ajouter" Click="Ajouter_FactureAvFr_button_Click" Grid.Column="2" Grid.Row="1"/>
+        <Button x:Name="Modifier_facture_buttonAvfr" Width="76" VerticalAlignment="Top" Margin="249,54,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Content="Modifier" Click="Modifier_factureAvFr_button_Click" Grid.Column="2" Grid.Row="1"/>
+        <Button x:Name="Supprimer_factureAvFr" Width="76" VerticalAlignment="Top" Margin="331,54,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Content="Supp" Click="Supprimer_factureAvFr_Click" Grid.Column="2" Grid.Row="1"/>
+        <Button x:Name="Actualiser_button" Width="88" VerticalAlignment="Top" Margin="213,10,0,0" Height="20" HorizontalAlignment="Left" FontWeight="SemiBold" Content="Actualiser" Click="Actualiser_button_Click" Background="Goldenrod" Grid.Column="4"/>
+        <Button x:Name="imprimer_selected_factureAvoirFr_button" Width="80" VerticalAlignment="Top" Margin="164,18,0,0" Height="24" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Content="Imprimer" Click="imprimer_selected_facture_button_Click" Background="Gold" Grid.Column="4" Grid.Row="1"/>
+        <Button x:Name="Ajouter_AvFr_vers_facture_button" Width="44" VerticalAlignment="Top" Margin="6,80,0,0" Height="190" HorizontalAlignment="Left" FontSize="40" Content="→" Click="Ajouter_AvFr_vers_factureAvFr_button_Click" Grid.Column="1" Grid.Row="2"/>
+        <Label x:Name="label1" VerticalAlignment="Top" Margin="10,56,0,0" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Content="Avoir Fournisseur non facturé :" Grid.Row="1" Height="31" Width="230"/>
+        <Label x:Name="label1_Copy" VerticalAlignment="Top" Margin="7,54,0,0" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Content="Liste des factures :" Grid.Column="2" Grid.Row="1" Height="31" Width="143"/>
+        <Label x:Name="label1_Copy1" VerticalAlignment="Top" Margin="4,52,0,0" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Content="Facture N° :" Grid.Column="4" Grid.Row="1" Height="31" Width="94"/>
+        <Label x:Name="label2" Width="80" VerticalAlignment="Top" Margin="70,7,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="SemiBold" Content="Total HT :" Grid.Column="4" Grid.Row="3" Height="29"/>
+        <Label x:Name="label2_Copy" Width="80" VerticalAlignment="Top" Margin="70,35,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="SemiBold" Content="Total TVA :" Grid.Column="4" Grid.Row="3" Height="29"/>
+        <Label x:Name="label2_Copy1" Width="102" VerticalAlignment="Top" Margin="70,59,0,0" HorizontalAlignment="Left" FontSize="18" FontWeight="SemiBold" Content="Total TTC :" Grid.Column="4" Grid.Row="3" Height="34"/>
+        <TextBlock x:Name="label_total_ht_dansFacture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="178,9,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Foreground="Black" Grid.Column="4" Grid.Row="3"/>
+        <TextBlock x:Name="label_total_tva_dansFacture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="178,37,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Foreground="Black" Grid.Column="4" Grid.Row="3"/>
+        <TextBlock x:Name="label_total_ttc_dansFacture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="178,63,0,0" Height="26" HorizontalAlignment="Left" FontSize="18" FontWeight="SemiBold" Foreground="Black" Grid.Column="4" Grid.Row="3"/>
+        <Label x:Name="label2_Copy2" Width="80" VerticalAlignment="Top" Margin="67,3,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="SemiBold" Content="Total HT :" Grid.Column="2" Grid.Row="3" Height="29"/>
+        <Label x:Name="label2_Copy3" Width="80" VerticalAlignment="Top" Margin="67,31,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="SemiBold" Content="Total TVA :" Grid.Column="2" Grid.Row="3" Height="29"/>
+        <Label x:Name="label2_Copy4" Width="102" VerticalAlignment="Top" Margin="67,55,0,0" HorizontalAlignment="Left" FontSize="18" FontWeight="SemiBold" Content="Total TTC :" Grid.Column="2" Grid.Row="3" Height="34"/>
+        <TextBlock x:Name="label_total_ht_facture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="175,7,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Foreground="Black" Grid.Column="2" Grid.Row="3"/>
+        <TextBlock x:Name="label_total_tva_facture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="175,35,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Foreground="Black" Grid.Column="2" Grid.Row="3"/>
+        <TextBlock x:Name="label_total_ttc_facture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="175,61,0,0" Height="26" HorizontalAlignment="Left" FontSize="18" FontWeight="SemiBold" Foreground="Black" Grid.Column="2" Grid.Row="3"/>
+        <Label x:Name="label2_Copy5" Width="79" VerticalAlignment="Top" Margin="53,1,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="SemiBold" Content="Total HT :" Grid.Row="3" Height="29"/>
+        <Label x:Name="label2_Copy6" Width="79" VerticalAlignment="Top" Margin="53,29,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="SemiBold" Content="Total TVA :" Grid.Row="3" Height="29"/>
+        <Label x:Name="label2_Copy7" Width="102" VerticalAlignment="Top" Margin="53,53,0,0" HorizontalAlignment="Left" FontSize="18" FontWeight="SemiBold" Content="Total TTC :" Grid.Row="3" Height="34"/>
+        <TextBlock x:Name="label_total_ht_nonFacture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="160,3,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Foreground="Black" Grid.Row="3"/>
+        <TextBlock x:Name="label_total_tva_nonFacture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="160,31,0,0" Height="26" HorizontalAlignment="Left" FontSize="16" FontWeight="SemiBold" Foreground="Black" Grid.Row="3"/>
+        <TextBlock x:Name="label_total_ttc_nonFacture" Width="164" VerticalAlignment="Top" TextAlignment="Right" Margin="160,57,0,0" Height="26" HorizontalAlignment="Left" FontSize="18" FontWeight="SemiBold" Foreground="Black" Grid.Row="3"/>
+        <GroupBox x:Name="groupBox_Copy" Width="518" VerticalAlignment="Top" Margin="45,1,0,0" Height="64" HorizontalAlignment="Left" Header="Fournisseur" FontSize="14" FontWeight="SemiBold" Foreground="Black" BorderBrush="Black" Grid.Column="2" Grid.ColumnSpan="3">
+            <TextBlock x:Name="FournisseurTextBlock" VerticalAlignment="Top" Text="Fournisseur non selectionné" TextWrapping="Wrap" Margin="87,15,46,0" FontSize="16" FontWeight="SemiBold"/>
+        </GroupBox>
+        <Button x:Name="Fournisseurbtn" Width="60" VerticalAlignment="Top" Margin="59,28,0,0" HorizontalAlignment="Left" FontSize="18" FontWeight="SemiBold" Content="..." Click="Fournisseurbtn_Click" Background="Gold" Grid.Column="2" Height="28"/>
+        <TextBlock x:Name="CodeFourTextBlock" Width="126" VerticalAlignment="Top" Text="" TextWrapping="Wrap" Margin="175,19,0,0" HorizontalAlignment="Left" Foreground="Black" Grid.Column="2" Height="16"/>
+        <Button x:Name="annuler_AvFr_button" Width="44" VerticalAlignment="Top" Margin="5,80,0,0" Height="190" HorizontalAlignment="Left" FontSize="40" Content="←" Click="annuler_AvFr_button_Click" Grid.Column="3" Grid.Row="2"/>
+        <DataGrid x:Name="AvoirFrDataGridNonFacturer" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,4,4,5" ItemsSource="{Binding}" IsReadOnly="True" FontSize="16" FontWeight="SemiBold" EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="num_Bon_fournisseurColumn" Width="130" Header="Num Four" Binding="{Binding Num_AvoirFournisseur}"/>
+                <DataGridTextColumn x:Name="net_payerColumn" Width="140" Header="Total" Binding="{Binding net_payer, StringFormat=\{0:n0\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="date_livraisonColumn" Width="100" Header="Date liv" Binding="{Binding date, StringFormat=\{0:dd/MM/yy\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="factureAvoirFournisseurDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="7,4,11,5" MouseDoubleClick="GetSelectedFactureAvoirFR" ItemsSource="{Binding Source={StaticResource factureFournisseurViewSource}}" IsReadOnly="True" FontSize="16" FontWeight="SemiBold" EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="numFactureFournisseurColumn" Width="150" Header="Num" Binding="{Binding Num}"/>
+                <DataGridTextColumn x:Name="net_payerColumn11fac" Width="140" Header="Total" Binding="{Binding tot_ttc, StringFormat=\{0:n0\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="dateFacturationFournisseurColumn" Width="110" Header="Date fac four" Binding="{Binding date, StringFormat=\{0:dd/MM/yy\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="AvoirFrnDataGridDansLaFacture" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="4,4,5,5" ItemsSource="{Binding}" IsReadOnly="True" FontSize="16" FontWeight="SemiBold" EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.Column="4" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="num_Bon_fournisseurColumn1" Width="140" Header="Num" Binding="{Binding Num}"/>
+                <DataGridTextColumn x:Name="net_payerColumn1" Width="145" Header="Total" Binding="{Binding net_payer, StringFormat=\{0:n0\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="date_livraisonColumn1" Width="100" Header="Date liv" Binding="{Binding date, StringFormat=\{0:dd/MM/yy\}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="labelCurrentFactureAvoirFr" Width="174" VerticalAlignment="Top" Margin="102,52,0,0" HorizontalAlignment="Left" FontSize="17" FontWeight="SemiBold" Content="" Grid.Column="4" Grid.Row="1" Height="33"/>
+        <CheckBox x:Name="checkBoxConstructeur" Width="96" VerticalAlignment="Top" Margin="323,19,0,0" IsEnabled="False" HorizontalAlignment="Left" FontWeight="Bold" Content="Constructeur" Grid.Column="2" Height="15"/>
+
+    </Grid>
+</Window>

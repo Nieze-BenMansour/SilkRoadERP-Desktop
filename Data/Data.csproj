@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87B8A683-3A8F-4B9D-A51E-51D00D056095}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\DatabaseFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDatabaseFactory .cs" />
+    <Compile Include="Infrastructure\IRepositoryBase.cs" />
+    <Compile Include="Infrastructure\IRepositoryBaseAsync.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201801011902012_sala7factrureavoirfour.cs" />
+    <Compile Include="Migrations\201801011902012_sala7factrureavoirfour.Designer.cs">
+      <DependentUpon>201801011902012_sala7factrureavoirfour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801011915421_sala77.cs" />
+    <Compile Include="Migrations\201801011915421_sala77.Designer.cs">
+      <DependentUpon>201801011915421_sala77.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801011917066_sala777.cs" />
+    <Compile Include="Migrations\201801011917066_sala777.Designer.cs">
+      <DependentUpon>201801011917066_sala777.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Mapping\AvoirFinancierFournisseurMap.cs" />
+    <Compile Include="Models\Mapping\AvoirFournisseurMap.cs" />
+    <Compile Include="Models\Mapping\FactureAvoirFournisseurMap.cs" />
+    <Compile Include="Models\Mapping\AvoirMap.cs" />
+    <Compile Include="Models\Mapping\BonDeLivraisonMap.cs" />
+    <Compile Include="Models\Mapping\BonDeReceptionMap.cs" />
+    <Compile Include="Models\Mapping\ClientMap.cs" />
+    <Compile Include="Models\Mapping\CommandeMap.cs" />
+    <Compile Include="Models\Mapping\DeviMap.cs" />
+    <Compile Include="Models\Mapping\EcheanceDesFournisseurMap.cs" />
+    <Compile Include="Models\Mapping\FactureFournisseurMap.cs" />
+    <Compile Include="Models\Mapping\FactureMap.cs" />
+    <Compile Include="Models\Mapping\FournisseurMap.cs" />
+    <Compile Include="Models\Mapping\LigneAvoirFournisseurMap.cs" />
+    <Compile Include="Models\Mapping\LigneAvoirMap.cs" />
+    <Compile Include="Models\Mapping\LigneBLMap.cs" />
+    <Compile Include="Models\Mapping\LigneBonReceptionMap.cs" />
+    <Compile Include="Models\Mapping\LigneCommandeMap.cs" />
+    <Compile Include="Models\Mapping\LigneDeviMap.cs" />
+    <Compile Include="Models\Mapping\ProduitMap.cs" />
+    <Compile Include="Models\Mapping\SystemeMap.cs" />
+    <Compile Include="Models\Mapping\TransactionMap.cs" />
+    <Compile Include="SteDataBaseContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{c94dc1c9-0688-49fa-bb7e-8cf00da01bb3}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801011902012_sala7factrureavoirfour.resx">
+      <DependentUpon>201801011902012_sala7factrureavoirfour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801011915421_sala77.resx">
+      <DependentUpon>201801011915421_sala77.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801011917066_sala777.resx">
+      <DependentUpon>201801011917066_sala777.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

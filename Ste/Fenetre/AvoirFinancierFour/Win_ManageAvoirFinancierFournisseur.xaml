@@ -1,0 +1,48 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre.AvoirFinancierFour"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:Ste="clr-namespace:Ste" x:Class="Ste.Fenetre.AvoirFinancierFour.Win_ManageAvoirFinancierFournisseur"
+        mc:Ignorable="d"
+        Title="Win_ManageAvoirFinancierFournisseur" Height="493" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Ste:SteDataBaseDataSet x:Key="steDataBaseDataSet"/>
+        <CollectionViewSource x:Key="avoirFinancierFournisseursViewSource" Source="{Binding AvoirFinancierFournisseurs, Source={StaticResource steDataBaseDataSet}}"/>
+    </Window.Resources>
+    <Grid>
+
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="239,62,0,0" HorizontalAlignment="Left" DataContext="{StaticResource avoirFinancierFournisseursViewSource}" Width="507" Height="305" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"  />
+                <RowDefinition Height="45"  />
+                <RowDefinition Height="108"  />
+                <RowDefinition Height="59"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="127*"/>
+                <ColumnDefinition Width="380*"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,8,0,4" HorizontalAlignment="Left" Grid.Column="0" Content="Num :" Height="34" Width="82" Foreground="Black" FontSize="14" FontWeight="SemiBold"/>
+            <TextBox x:Name="numTextBox" Width="364" IsEnabled="False" VerticalAlignment="Center" Text="{Binding Num, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="6,0,0,10" Height="36" HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3,4,0,0" HorizontalAlignment="Left" Grid.Column="0" Content="Num Sur Page :" Height="42" Width="133" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="numSurPageTextBox" Width="364" VerticalAlignment="Center" Text="{Binding NumSurPage, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="6,4,0,10" Height="32" HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.Column="1" PreviewTextInput="PreviewTextInput_nie"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,7,0,0" HorizontalAlignment="Left" Grid.Column="0" Content="Date :" Height="39" Width="133" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+            <DatePicker x:Name="dateDatePicker" VerticalAlignment="Center" SelectedDate="{Binding date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="6,7,0,0" HorizontalAlignment="Left" Height="39" Width="364" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,27,0,41" HorizontalAlignment="Left" Grid.Column="0" Content="Description :" Height="40" Width="133" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+            <xctk:RichTextBox x:Name="descriptionTextBox" Text="" Width="364" VerticalAlignment="Center"  Grid.Row="3" Margin="6,5,0,0" Height="103" HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.Column="1"/>
+
+
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3,8,0,9" HorizontalAlignment="Left" Grid.Column="0" Content="Total TTC :" Height="42" Width="133" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+            <xctk:DecimalUpDown x:Name="tot_ttcTextBox" Width="364" VerticalAlignment="Center"   Grid.Row="4" Margin="6,8,0,9" Height="42" FormatString="N0" HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="SemiBold" Grid.Column="1" AllowSpin="False"  TextAlignment="Right" PreviewTextInput="PreviewTextInput_nie"/>
+        </Grid>
+        <Label x:Name="label" Content="Avoir financier fournisseur" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="52" Width="303" FontSize="24" FontWeight="SemiBold"/>
+        <Button x:Name="ValiderBtn" Content="Valider" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="487,387,0,0" VerticalAlignment="Top" Width="120" Height="41" Click="ValiderBtn_Click"/>
+        <Button x:Name="AnnullerBtn" Content="Terminer" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="626,387,0,0" VerticalAlignment="Top" Width="120" Height="41" Click="AnnullerBtn_Click"/>
+        <Button x:Name="SupprimerAnullerBtn" Content="Annuler" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="120" Height="41" Click="AnnulerSupprimerBtn_Click"/>
+
+    </Grid>
+</Window>

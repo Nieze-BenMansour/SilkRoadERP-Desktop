@@ -1,0 +1,67 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre"
+        xmlns:Ste="clr-namespace:Ste" x:Class="Ste.Fenetre.Win_ManageSysteme"
+        mc:Ignorable="d"
+        Title="Win_ManageSysteme" Height="620.301" Width="527.82" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Ste:SteDataBaseDataSet x:Key="steDataBaseDataSet"/>
+        <CollectionViewSource x:Key="systemeViewSource" Source="{Binding Systeme, Source={StaticResource steDataBaseDataSet}}"/>
+    </Window.Resources>
+    <Grid>
+        <Button x:Name="ValiderButton" Content="Valider" HorizontalAlignment="Left" Margin="190,533,0,0" VerticalAlignment="Top" Width="140" Height="32" FontSize="16" FontWeight="SemiBold" Click="ValiderButton_Click"/>
+        <Grid x:Name="grid1" DataContext="{StaticResource systemeViewSource}" HorizontalAlignment="Left" Margin="27,27,0,0" VerticalAlignment="Top" Width="473">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Nom Societe:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="nomSocieteTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="1" Text="{Binding NomSociete, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Timbre:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="timbreTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="2" Text="{Binding Timbre, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Adresse:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="adresseTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="3" Text="{Binding adresse, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Tel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="telTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="4" Text="{Binding tel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Fax:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="faxTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="5" Text="{Binding fax, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Email:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="emailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="6" Text="{Binding email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Code TVA:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="codeTVATextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="7" Text="{Binding codeTVA, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Matricule Fiscale:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="matriculeFiscaleTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="8" Text="{Binding matriculeFiscale, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Code Categorie:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="codeCategorieTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="9" Text="{Binding codeCategorie, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Etb Secondaire:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="etbSecondaireTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="10" Text="{Binding etbSecondaire, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Pourcentage Fodec:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="pourcentageFodecTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="11" Text="{Binding pourcentageFodec, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Adresse Retenu:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="12" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="adresseRetenuTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="12" Text="{Binding adresseRetenu, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+            <Label Content="Pourcentage Retenu:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="pourcentageRetenuTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,7,-178,7" Grid.Row="13" Text="{Binding pourcentageRetenu, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="302" FontSize="16" FontWeight="SemiBold"/>
+        </Grid>
+
+    </Grid>
+</Window>

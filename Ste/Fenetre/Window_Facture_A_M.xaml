@@ -1,0 +1,14 @@
+﻿<Window x:Class="Ste.Fenetre.Window_Facture_A_M"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window_Facture_A_M" Height="187.218" Width="314.662"
+        WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DatePicker x:Name="date_facture" HorizontalAlignment="Left" Margin="53,49,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="SemiBold" SelectedDate="{x:Static sys:DateTime.Now}" Width="201" />
+        <Button x:Name="valider_button" Content="Valider" HorizontalAlignment="Left" Margin="53,111,0,0" VerticalAlignment="Top" Width="98" Height="36" FontWeight="SemiBold" FontSize="16" Click="valider_button_Click"/>
+        <Button x:Name="Annuler_button" Content="Annuler" HorizontalAlignment="Left" Margin="156,111,0,0" VerticalAlignment="Top" Width="98" Height="36" FontWeight="SemiBold" FontSize="16" Click="Annuler_button_Click"/>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="53,10,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

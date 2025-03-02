@@ -1,0 +1,34 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:local="clr-namespace:Ste" x:Class="Ste.WindowChercherProduitBL"
+         WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen"
+        Title="WindowChercherProduitBL" Height="468.133" Width="1190.2" Loaded="Window_Loaded">
+    <Window.Resources>
+        
+        <CollectionViewSource x:Key="produitViewSource" />
+        <Style x:Key="rightAlignedColumn" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource produitViewSource}" Margin="10,0,0,0">
+
+        <DataGrid x:Name="produitDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,77,10,10" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" IsReadOnly="true" FontSize="23" FontWeight="SemiBold" MouseDoubleClick="Get"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn  x:Name="refColumn" Width="135" Header="Ref" Binding="{Binding refe}" FontSize="22" Foreground="Black" />
+                <DataGridTextColumn  x:Name="nomColumn" Width="640" Header="Designation" Binding="{Binding nom}" FontSize="22" Foreground="Black"/>
+                <DataGridTextColumn  x:Name="qteColumn" Width="135" Header="Qte" Binding="{Binding qte}" FontSize="22" Foreground="Black" />
+                <DataGridTextColumn  x:Name="prixAchatColumn" Width="115" Header="P.Achat" Binding="{Binding prixAchat, StringFormat={}{0:n0}}" FontSize="22" Foreground="Black"  ElementStyle="{StaticResource rightAlignedColumn}"  />
+                <DataGridTextColumn  x:Name="remiseAchatColumn" Width="SizeToHeader" Header="R.Achat" Binding="{Binding remiseAchat,StringFormat={}{0:#,#.00}}" FontSize="22" Foreground="Black"  ElementStyle="{StaticResource rightAlignedColumn}"  />
+          
+            </DataGrid.Columns>
+            
+           
+        </DataGrid>
+        
+        <TextBox x:Name="refSearch" HorizontalAlignment="Left" Height="40" Margin="0,37,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.494,0.502" TextChanged="refSearch_TextChanged" FontSize="23" FontWeight="SemiBold" />
+        <TextBox x:Name="desisearch" HorizontalAlignment="Left" Height="40" Margin="136,37,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="449" TextChanged="desisearch_TextChanged" FontSize="23" FontWeight="SemiBold"/>
+        <Button x:Name="fermer" Content="Fermer" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="950,10,0,0" VerticalAlignment="Top" Width="59" Height="32" Click="fermer_Click"/>
+
+    </Grid>
+</Window>

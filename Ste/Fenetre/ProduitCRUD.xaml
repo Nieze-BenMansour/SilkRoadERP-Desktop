@@ -1,0 +1,85 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre"
+        xmlns:Ste="clr-namespace:Ste" x:Class="Ste.Fenetre.ProduitCRUD"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="ProduitCRUD" Height="772.75" Width="1363.7"
+        WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowState="Maximized"  
+     Background="WhiteSmoke" Loaded="Window_Loaded" >
+
+    <Window.Resources>
+        <Ste:SteDataBaseDataSet x:Key="steDataBaseDataSet"/>
+        <CollectionViewSource x:Key="produitViewSource" Source="{Binding Produit, Source={StaticResource steDataBaseDataSet}}"/>
+        <Style x:Key="rightAlignedColumn" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <DataGrid FontSize="18" FontWeight="SemiBold" x:Name="produitDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource produitViewSource}}" Margin="10,3,10,10" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="DoubleClickDataDrid" IsReadOnly="True" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="refeColumn" Binding="{Binding refe}"  Header="Ref" Width="155" FontSize="16" Foreground="Black" />
+                <DataGridTextColumn x:Name="nomColumn" Binding="{Binding nom}"  Header="Designation" Width="525" FontSize="16" Foreground="Black"/>
+                <DataGridTextColumn x:Name="qteColumn" Binding="{Binding qte}" Header="Qte" Width="100" FontSize="16" Foreground="Black" ElementStyle="{StaticResource rightAlignedColumn}"/>
+                <DataGridTextColumn x:Name="remiseColumn" Binding="{Binding remise,StringFormat={}{0:#,#.00}}" Header="R vente" Width="80" FontSize="16" Foreground="Black" ElementStyle="{StaticResource rightAlignedColumn}"/>
+                <DataGridTextColumn x:Name="remiseAchatColumn" Binding="{Binding remiseAchat,StringFormat={}{0:#,#.00}}" Header="R achat" Width="90" FontSize="16" Foreground="Black" ElementStyle="{StaticResource rightAlignedColumn}"/>
+                <DataGridTextColumn x:Name="tVAColumn" Binding="{Binding TVA,StringFormat={}{0:#,#.00} }" Header="TVA" Width="90" FontSize="16" Foreground="Black" ElementStyle="{StaticResource rightAlignedColumn}"/>
+                <DataGridTextColumn x:Name="prixColumn" Binding="{Binding prix, StringFormat={}{0:n0}}" Header="Prix vente" Width="120" FontSize="16" Foreground="Black" ElementStyle="{StaticResource rightAlignedColumn}"/>
+                <DataGridTextColumn x:Name="prixAchatColumn" Binding="{Binding prixAchat, StringFormat={}{0:n0}}" Header="Prix achat" Width="120" FontSize="16" Foreground="Black" ElementStyle="{StaticResource rightAlignedColumn}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="grid1" DataContext="{StaticResource produitViewSource}" HorizontalAlignment="Left" Margin="379,10,0,0" VerticalAlignment="Top" Width="648" Height="354" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="111"/>
+                <ColumnDefinition Width="Auto" MinWidth="537"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Référence :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="0" VerticalAlignment="Center" Height="28" Width="84" FontSize="14" FontWeight="SemiBold"/>
+            <TextBox x:Name="refeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,6,0,5" Grid.Row="0" Text="{Binding refe, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" FontSize="16" FontWeight="SemiBold"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="Designation :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,7" Grid.Row="1" VerticalAlignment="Center" Height="28" Width="94"/>
+            <TextBox FontSize="16" FontWeight="SemiBold" x:Name="nomTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,6,0,6" Grid.Row="1" Text="{Binding nom, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="Qte :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,7" Grid.Row="2" VerticalAlignment="Center" Height="28" Width="71"/>
+            <TextBox x:Name="qteTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,6,0,6" Grid.Row="2" Text="{Binding qte, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" PreviewTextInput="PreviewTextInput_nie" FontSize="16" FontWeight="SemiBold" TextAlignment="Center"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="Qte Limite :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,7" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="84"/>
+            <TextBox x:Name="qteLimiteTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,6,0,6" Grid.Row="3" Text="{Binding qteLimite, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" PreviewTextInput="PreviewTextInput_nie" FontSize="16" FontWeight="SemiBold" TextAlignment="Center"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="Remise :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,6" Grid.Row="4" VerticalAlignment="Center" Height="28" Width="71"/>
+            <xctk:MaskedTextBox Mask="aa.aa" x:Name="remiseTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,5,0,6" Grid.Row="4" Text="{Binding remise, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" PreviewTextInput="PreviewTextInput_nie" FontSize="16" FontWeight="SemiBold" TextAlignment="Center"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="Remise Achat :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,6" Grid.Row="5" VerticalAlignment="Center" Height="28" Width="106"/>
+            <xctk:MaskedTextBox Mask="aa.aa" x:Name="remiseAchatTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,6,0,5" Grid.Row="5" Text="{Binding remiseAchat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" PreviewTextInput="PreviewTextInput_nie" FontSize="16" FontWeight="SemiBold" TextAlignment="Center"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="TVA:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,6" Grid.Row="6" VerticalAlignment="Center" Height="28" Width="84"/>
+            <xctk:MaskedTextBox Mask="aa.aa"  x:Name="tVATextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,5,0,6" Grid.Row="6" Text="{Binding TVA, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" PreviewTextInput="PreviewTextInput_nie" FontSize="16" FontWeight="SemiBold" TextAlignment="Center"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="Prix :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,6" Grid.Row="7" VerticalAlignment="Center" Height="28" Width="84"/>
+            <xctk:DecimalUpDown TextAlignment="Right" FormatString="N0" x:Name="prixTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,6,0,5" Grid.Row="7" Text="{Binding prix, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" PreviewTextInput="PreviewTextInput_nie" FontSize="16" FontWeight="SemiBold"/>
+            <Label FontSize="14" FontWeight="SemiBold" Content="Prix Achat :" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,6" Grid.Row="8" VerticalAlignment="Center" Height="28" Width="84"/>
+            <xctk:DecimalUpDown TextAlignment="Right" FormatString="N0" x:Name="prixAchatTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="3,5,0,6" Grid.Row="8" Text="{Binding prixAchat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="524" PreviewTextInput="PreviewTextInput_nie" FontSize="16" FontWeight="SemiBold"/>
+        </Grid>
+        <Button x:Name="ajouterBtn" FontSize="18" FontWeight="SemiBold" Content="Ajouter" HorizontalAlignment="Left" Margin="1208,78,0,0" VerticalAlignment="Top" Width="91" Click="ajouterBtn_Click" Height="32"/>
+        <Button x:Name="modifierBtn" Content="Modifier" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="1208,152,0,0" VerticalAlignment="Top" Width="91" Click="modifierBtn_Click" Height="32"/>
+        <Button x:Name="supprimerBtn" FontSize="18" FontWeight="SemiBold" Content="Supprimer" HorizontalAlignment="Left" Margin="1208,189,0,0" VerticalAlignment="Top" Width="91" Click="supprimerBtn_Click" Height="32"/>
+        <Button x:Name="fermerBtn" Content="Fermer" HorizontalAlignment="Left" Margin="1271,10,0,0" VerticalAlignment="Top" Width="75" Click="fermerBtn_Click" Height="20"/>
+        <Button x:Name="refreshBtn" FontSize="18" FontWeight="SemiBold" Content="Refresh" HorizontalAlignment="Left" Margin="1208,115,0,0" VerticalAlignment="Top" Width="91" Click="refreshBtn_Click_1" Height="32"/>
+        <Label x:Name="label" Content="Stock" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="62" Width="135" FontSize="32" FontWeight="SemiBold"/>
+        <TextBox x:Name="textBox_search_ref" BorderBrush="Black" HorizontalAlignment="Left" Height="28" Margin="10,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" TextChanged="textBox_search_ref_TextChanged" FontSize="16" FontWeight="SemiBold"/>
+        <TextBox x:Name="textBox_search_desi" BorderBrush="Black" HorizontalAlignment="Left" Height="28" Margin="169,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="520" TextChanged="textBox_search_desi_TextChanged" FontSize="16" FontWeight="SemiBold"/>
+        <CheckBox x:Name="checkBoxVisible" Content="Visible" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="1079,339,0,0" VerticalAlignment="Top" Width="99" Height="22" />
+        <Label x:Name="label1" FontSize="16" FontWeight="SemiBold" Content="Cherher :" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Height="31" Width="76"/>
+    </Grid>
+
+</Window>

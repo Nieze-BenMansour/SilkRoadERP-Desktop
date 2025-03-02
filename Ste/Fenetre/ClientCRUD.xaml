@@ -1,0 +1,70 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre"
+        xmlns:Ste="clr-namespace:Ste" x:Class="Ste.Fenetre.ClientCRUD"
+        mc:Ignorable="d"
+        Title="ClientCRUD" Height="772.75" Width="1363.7"
+        WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowState="Maximized"  
+     Background="WhiteSmoke" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Ste:SteDataBaseDataSet x:Key="steDataBaseDataSet"/>
+        <CollectionViewSource x:Key="clientViewSource" Source="{Binding Client, Source={StaticResource steDataBaseDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource clientViewSource}">
+
+        <DataGrid x:Name="clientDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="647,235,76,33" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="Double_click_grid" IsReadOnly="True" FontSize="20" FontWeight="SemiBold">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Width="180" IsReadOnly="True" Header="Code" Binding="{Binding Id}" FontSize="18" FontWeight="SemiBold" />
+                <DataGridTextColumn x:Name="nomColumn" Width="250" Header="Nom" Binding="{Binding nom}" FontSize="18" FontWeight="SemiBold"/>
+                <DataGridTextColumn x:Name="telColumn" Width="180" Header="Tel" Binding="{Binding tel}" FontSize="18" FontWeight="SemiBold"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="48,176,0,0" VerticalAlignment="Top" Width="511" Height="363">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Nom :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="nomTextBox" Grid.Column="1" BorderBrush="Black" HorizontalAlignment="Left" Height="30" Margin="3,8,-215,8" Grid.Row="1" FontSize="18" FontWeight="SemiBold" Text="{Binding nom, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+            <Label Content="Telephone :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="telTextBox" Grid.Column="1" HorizontalAlignment="Left" BorderBrush="Black" Height="30" Margin="3,8,-214,8" Grid.Row="2" FontSize="18" FontWeight="SemiBold" Text="{Binding tel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+            <Label Content="Adresse :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="adresseTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" BorderBrush="Black" Margin="3,8,-213,8" Grid.Row="3" FontSize="18" FontWeight="SemiBold" Text="{Binding adresse, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+            <Label Content="Matricule :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="matriculeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3,8,-213,8" BorderBrush="Black" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Text="{Binding matricule, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+            <Label Content="Code :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3,8,-212,8" Grid.Row="5" FontSize="18" BorderBrush="Black" FontWeight="SemiBold" Text="{Binding code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+            <Label Content="Code categorie :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="code_catTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3,8,-212,8" Grid.Row="6" FontSize="18" BorderBrush="Black" FontWeight="SemiBold" Text="{Binding code_cat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+            <Label Content="Etb secondaire :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="etb_secTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3,8,-212,8" Grid.Row="7" FontSize="18" FontWeight="SemiBold" BorderBrush="Black" Text="{Binding etb_sec, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+            <Label Content="Mail :" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold"/>
+            <TextBox x:Name="mailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3,8,-212,8" Grid.Row="8" FontSize="18" FontWeight="SemiBold" BorderBrush="Black" Text="{Binding mail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="347"/>
+        </Grid>
+        <Button x:Name="AjouterBtn" Content="Ajouter" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="48,590,0,0" VerticalAlignment="Top" Width="84" Click="AjouterBtn_Click" Height="58"/>
+        <Button x:Name="ModifierBtn" Content="Modifier" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="137,590,0,0" VerticalAlignment="Top" Width="84" Click="ModifierBtn_Click" Height="58"/>
+        <Button x:Name="SupprimerBtn" Content="Supprimer" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="226,590,0,0" VerticalAlignment="Top" Width="84" Click="SupprimerBtn_Click" Height="58"/>
+        <Button x:Name="fermerBtn" Content="Fermer" HorizontalAlignment="Left" Margin="1271,10,0,0" VerticalAlignment="Top" Width="75" Click="fermerBtn_Click"/>
+        <Button x:Name="refreshBtn" Content="Refresh" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="315,590,0,0" VerticalAlignment="Top" Width="84" Click="refreshBtn_Click" Height="58"/>
+        <Label x:Name="label" FontSize="30" FontWeight="SemiBold" Content="Client " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="searchCodetextBox" BorderBrush="Black" HorizontalAlignment="Left" Height="30" Margin="647,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" TextChanged="searchCodetextBox_TextChanged" FontSize="18" FontWeight="SemiBold"/>
+        <TextBox x:Name="searchNomtextBox" BorderBrush="Black" HorizontalAlignment="Left" Height="30" Margin="832,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="243" TextChanged="searchNomtextBox_TextChanged" FontSize="18" FontWeight="SemiBold"/>
+        <Label x:Name="label2" FontSize="16" FontWeight="SemiBold" Content="Chercher :" HorizontalAlignment="Left" Margin="647,164,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

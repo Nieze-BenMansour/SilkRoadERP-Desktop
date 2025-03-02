@@ -1,0 +1,76 @@
+﻿<Window x:Class="Ste.Fenetre.Win_TotalDesFactureFournisseur"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ste.Fenetre"
+        mc:Ignorable="d"
+        Title="Win_TotalDesFactureFournisseur"  Height="772.75" Width="1363.7"
+        WindowStyle="None"  Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowState="Maximized"  
+     Background="WhiteSmoke" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1349*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="576*"/>
+            <RowDefinition Height="76*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="label" FontSize="26" FontWeight="SemiBold" Content="Factures fournisseur" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="257"/>
+
+        <DataGrid x:Name="factureFournisseurDataGrid" FontSize="18" IsReadOnly="True" FontWeight="SemiBold"  Foreground="Black" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,3,2.667,8" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="numColumn" Binding="{Binding Num}" Header="Num" IsReadOnly="True" Width="200"/>
+                <DataGridTextColumn x:Name="nom_fournissuerColumn" Binding="{Binding Fournisseur.nom}" Header="Fournisseur" Width="350">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="dateColumn" Binding="{Binding dateFacturationFournisseur, StringFormat=\{0:dd/MM/yy\}}" Header="Date" Width="150">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="tot_Column" Binding="{Binding tot_ttc, StringFormat=\{0:n0\}}" Header="Total" Width="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GroupBox x:Name="groupBox" Header="Date" HorizontalAlignment="Left" Margin="198,45,0,0" VerticalAlignment="Top" Height="64" Width="473" Foreground="Black" BorderBrush="Black" FontSize="14" FontWeight="SemiBold"/>
+        <DatePicker x:Name="dateFinPicker" HorizontalAlignment="Left" Margin="453,70,0,0" VerticalAlignment="Top" Width="200" Height="28" FontSize="16" FontWeight="SemiBold"/>
+        <DatePicker x:Name="dateDebutPicker" HorizontalAlignment="Left" Margin="215,70,0,0" VerticalAlignment="Top" Width="200" Height="28" FontSize="16" FontWeight="SemiBold"/>
+        <Label x:Name="label1" Content="à :" HorizontalAlignment="Left" Margin="423,68,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold"/>
+        <Button x:Name="ChercherBtn" Content="Chercher" HorizontalAlignment="Left" Margin="1043,58,0,0" VerticalAlignment="Top" Width="82" Height="51" FontSize="16" FontWeight="SemiBold" Click="ChercherBtn_Click"/>
+        <Label x:Name="label2" Content="Total :" HorizontalAlignment="Left" Margin="967,18,0,0" VerticalAlignment="Top" Width="71" FontSize="22" FontWeight="SemiBold" Grid.Row="2"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="41" Margin="1043,16,0,0" VerticalAlignment="Top" Width="254" Grid.Row="2">
+            <TextBlock x:Name="TotalTextBlock" HorizontalAlignment="Left" Margin="0,0,0,-2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="41" Width="244"  FontSize="26" FontWeight="SemiBold" TextAlignment="Right" Foreground="Black" />
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="41" Margin="670,16,0,0" VerticalAlignment="Top" Width="254" Grid.Row="2">
+            <TextBlock x:Name="TotalTVATextBlock" HorizontalAlignment="Left" Margin="0,0,0,-2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="41" Width="244"  FontSize="26" FontWeight="SemiBold" TextAlignment="Right" Foreground="Black" />
+        </Border>
+        <Label x:Name="label2_Copy" Content="Total TVA:" HorizontalAlignment="Left" Margin="554,18,0,0" VerticalAlignment="Top" Width="111" FontSize="22" FontWeight="SemiBold" Grid.Row="2"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="41" Margin="293,16,0,0" VerticalAlignment="Top" Width="254" Grid.Row="2">
+            <TextBlock x:Name="TotalHorsTVATextBlock" HorizontalAlignment="Left" Margin="0,0,0,-2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="41" Width="244"  FontSize="26" FontWeight="SemiBold" TextAlignment="Right" Foreground="Black" />
+        </Border>
+        <Label x:Name="label2_Copy1" Content="Total HT:" HorizontalAlignment="Left" Margin="190,18,0,0" VerticalAlignment="Top" Width="98" FontSize="22" FontWeight="SemiBold" Grid.Row="2"/>
+        <Button x:Name="FermerBtn" Content="Fermer" HorizontalAlignment="Left" Margin="1176,10,0,0" VerticalAlignment="Top" Width="83" Click="FermerBtn_Click" Height="29"/>
+        <Button x:Name="PrintBtn" Content="Imprimer" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="1130,57,0,0" VerticalAlignment="Top" Width="91" Click="PrintBtn_Click" Height="51"/>
+        <Button x:Name="actualiseBtn" Content="Actualiser" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="1226,57,0,0" VerticalAlignment="Top" Width="91"  Height="51" Click="actualiseBtn_Click"/>
+        <GroupBox x:Name="groupBox_Copy" Header="Fournisseur" HorizontalAlignment="Left" Margin="677,45,0,0" VerticalAlignment="Top" Height="64" Width="352" Foreground="Black" BorderBrush="Black" FontSize="14" FontWeight="SemiBold">
+            <TextBlock x:Name="FournisseurTextBlock" HorizontalAlignment="Left" Margin="87,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" FontSize="16" FontWeight="SemiBold" Text="Fournisseur non selectionné"/>
+        </GroupBox>
+        <Button x:Name="Fournisseurbtn" Content="..." HorizontalAlignment="Left" Margin="694,71,0,0" VerticalAlignment="Top" Width="59" FontSize="18" FontWeight="SemiBold" Background="Gold" Click="Fournisseurbtn_Click" />
+        <TextBlock x:Name="CodeFourTextBlock" HorizontalAlignment="Left" Margin="809,63,0,0" TextWrapping="Wrap" Text="" Foreground="Black" VerticalAlignment="Top" Width="126"/>
+
+    </Grid>
+</Window>
